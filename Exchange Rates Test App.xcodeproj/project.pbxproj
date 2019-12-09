@@ -3,27 +3,49 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7829F804239E6C7100797291 /* DetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7829F803239E6C7100797291 /* DetailPresenter.swift */; };
+		7829F809239E71AD00797291 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7829F807239E71AD00797291 /* DetailViewController.swift */; };
+		7829F80A239E71AD00797291 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7829F808239E71AD00797291 /* DetailViewController.xib */; };
+		7829F80C239E8EA200797291 /* DataBaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7829F80B239E8EA200797291 /* DataBaseService.swift */; };
 		786F3614239A6F8A00F86DA3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786F3613239A6F8A00F86DA3 /* AppDelegate.swift */; };
 		786F3616239A6F8A00F86DA3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786F3615239A6F8A00F86DA3 /* SceneDelegate.swift */; };
-		786F3618239A6F8A00F86DA3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786F3617239A6F8A00F86DA3 /* ViewController.swift */; };
+		786F3618239A6F8A00F86DA3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786F3617239A6F8A00F86DA3 /* MainViewController.swift */; };
 		786F361B239A6F8A00F86DA3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 786F3619239A6F8A00F86DA3 /* Main.storyboard */; };
 		786F361D239A6F8C00F86DA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 786F361C239A6F8C00F86DA3 /* Assets.xcassets */; };
 		786F3620239A6F8C00F86DA3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 786F361E239A6F8C00F86DA3 /* LaunchScreen.storyboard */; };
+		786F3628239A788300F86DA3 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786F3627239A788300F86DA3 /* Currency.swift */; };
+		786F362A239A792F00F86DA3 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786F3629239A792F00F86DA3 /* MainPresenter.swift */; };
+		786F3630239A86B300F86DA3 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 786F362F239A86B300F86DA3 /* MainViewController.xib */; };
+		786F3632239A895600F86DA3 /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786F3631239A895600F86DA3 /* ModuleBuilder.swift */; };
+		786F3634239A9B4A00F86DA3 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786F3633239A9B4A00F86DA3 /* NetworkService.swift */; };
+		A45B08146C15D7CEBCB7D902 /* Pods_Exchange_Rates_Test_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6304B302EAFB06404CF02F78 /* Pods_Exchange_Rates_Test_App.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		22A95BE503FA45D0AA877B1E /* Pods-Exchange Rates Test App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Exchange Rates Test App.release.xcconfig"; path = "Target Support Files/Pods-Exchange Rates Test App/Pods-Exchange Rates Test App.release.xcconfig"; sourceTree = "<group>"; };
+		3958C5DB7DB827C939CB3452 /* Pods-Exchange Rates Test App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Exchange Rates Test App.debug.xcconfig"; path = "Target Support Files/Pods-Exchange Rates Test App/Pods-Exchange Rates Test App.debug.xcconfig"; sourceTree = "<group>"; };
+		6304B302EAFB06404CF02F78 /* Pods_Exchange_Rates_Test_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Exchange_Rates_Test_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7829F803239E6C7100797291 /* DetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPresenter.swift; sourceTree = "<group>"; };
+		7829F807239E71AD00797291 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		7829F808239E71AD00797291 /* DetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
+		7829F80B239E8EA200797291 /* DataBaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseService.swift; sourceTree = "<group>"; };
 		786F3610239A6F8900F86DA3 /* Exchange Rates Test App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Exchange Rates Test App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		786F3613239A6F8A00F86DA3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		786F3615239A6F8A00F86DA3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		786F3617239A6F8A00F86DA3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		786F3617239A6F8A00F86DA3 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		786F361A239A6F8A00F86DA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		786F361C239A6F8C00F86DA3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		786F361F239A6F8C00F86DA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		786F3621239A6F8C00F86DA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		786F3627239A788300F86DA3 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
+		786F3629239A792F00F86DA3 /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
+		786F362F239A86B300F86DA3 /* MainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
+		786F3631239A895600F86DA3 /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
+		786F3633239A9B4A00F86DA3 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +53,62 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A45B08146C15D7CEBCB7D902 /* Pods_Exchange_Rates_Test_App.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		534515C5B2C979B29FBD3AC3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6304B302EAFB06404CF02F78 /* Pods_Exchange_Rates_Test_App.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7829F7FE239E693A00797291 /* DetailModule */ = {
+			isa = PBXGroup;
+			children = (
+				7829F802239E69B600797291 /* View */,
+				7829F801239E69AD00797291 /* Presenter */,
+				7829F7FF239E698D00797291 /* Model */,
+			);
+			path = DetailModule;
+			sourceTree = "<group>";
+		};
+		7829F7FF239E698D00797291 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7829F801239E69AD00797291 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				7829F803239E6C7100797291 /* DetailPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		7829F802239E69B600797291 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7829F807239E71AD00797291 /* DetailViewController.swift */,
+				7829F808239E71AD00797291 /* DetailViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		786F3607239A6F8900F86DA3 = {
 			isa = PBXGroup;
 			children = (
 				786F3612239A6F8A00F86DA3 /* Exchange Rates Test App */,
 				786F3611239A6F8900F86DA3 /* Products */,
+				F3615D53DE7554E5C6D33D0C /* Pods */,
+				534515C5B2C979B29FBD3AC3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +123,71 @@
 		786F3612239A6F8A00F86DA3 /* Exchange Rates Test App */ = {
 			isa = PBXGroup;
 			children = (
+				7829F7FE239E693A00797291 /* DetailModule */,
+				786F362B239A793F00F86DA3 /* MainModule */,
 				786F3613239A6F8A00F86DA3 /* AppDelegate.swift */,
 				786F3615239A6F8A00F86DA3 /* SceneDelegate.swift */,
-				786F3617239A6F8A00F86DA3 /* ViewController.swift */,
 				786F3619239A6F8A00F86DA3 /* Main.storyboard */,
 				786F361C239A6F8C00F86DA3 /* Assets.xcassets */,
 				786F361E239A6F8C00F86DA3 /* LaunchScreen.storyboard */,
 				786F3621239A6F8C00F86DA3 /* Info.plist */,
+				786F3631239A895600F86DA3 /* ModuleBuilder.swift */,
+				786F3635239A9B5A00F86DA3 /* ServiceLayer */,
 			);
 			path = "Exchange Rates Test App";
+			sourceTree = "<group>";
+		};
+		786F362B239A793F00F86DA3 /* MainModule */ = {
+			isa = PBXGroup;
+			children = (
+				786F362E239A865600F86DA3 /* Model */,
+				786F362D239A863E00F86DA3 /* Presenter */,
+				786F362C239A862F00F86DA3 /* View */,
+			);
+			path = MainModule;
+			sourceTree = "<group>";
+		};
+		786F362C239A862F00F86DA3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				786F3617239A6F8A00F86DA3 /* MainViewController.swift */,
+				786F362F239A86B300F86DA3 /* MainViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		786F362D239A863E00F86DA3 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				786F3629239A792F00F86DA3 /* MainPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		786F362E239A865600F86DA3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				786F3627239A788300F86DA3 /* Currency.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		786F3635239A9B5A00F86DA3 /* ServiceLayer */ = {
+			isa = PBXGroup;
+			children = (
+				786F3633239A9B4A00F86DA3 /* NetworkService.swift */,
+				7829F80B239E8EA200797291 /* DataBaseService.swift */,
+			);
+			path = ServiceLayer;
+			sourceTree = "<group>";
+		};
+		F3615D53DE7554E5C6D33D0C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3958C5DB7DB827C939CB3452 /* Pods-Exchange Rates Test App.debug.xcconfig */,
+				22A95BE503FA45D0AA877B1E /* Pods-Exchange Rates Test App.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +197,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 786F3624239A6F8C00F86DA3 /* Build configuration list for PBXNativeTarget "Exchange Rates Test App" */;
 			buildPhases = (
+				97680408D308F21D5FF6E4BC /* [CP] Check Pods Manifest.lock */,
 				786F360C239A6F8900F86DA3 /* Sources */,
 				786F360D239A6F8900F86DA3 /* Frameworks */,
 				786F360E239A6F8900F86DA3 /* Resources */,
+				6E5FFDA2B847AC7A66711FDA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -127,20 +252,71 @@
 			files = (
 				786F3620239A6F8C00F86DA3 /* LaunchScreen.storyboard in Resources */,
 				786F361D239A6F8C00F86DA3 /* Assets.xcassets in Resources */,
+				7829F80A239E71AD00797291 /* DetailViewController.xib in Resources */,
 				786F361B239A6F8A00F86DA3 /* Main.storyboard in Resources */,
+				786F3630239A86B300F86DA3 /* MainViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6E5FFDA2B847AC7A66711FDA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Exchange Rates Test App/Pods-Exchange Rates Test App-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Exchange Rates Test App/Pods-Exchange Rates Test App-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Exchange Rates Test App/Pods-Exchange Rates Test App-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		97680408D308F21D5FF6E4BC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Exchange Rates Test App-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		786F360C239A6F8900F86DA3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				786F3618239A6F8A00F86DA3 /* ViewController.swift in Sources */,
+				7829F80C239E8EA200797291 /* DataBaseService.swift in Sources */,
+				7829F809239E71AD00797291 /* DetailViewController.swift in Sources */,
+				786F362A239A792F00F86DA3 /* MainPresenter.swift in Sources */,
+				786F3628239A788300F86DA3 /* Currency.swift in Sources */,
+				786F3618239A6F8A00F86DA3 /* MainViewController.swift in Sources */,
+				7829F804239E6C7100797291 /* DetailPresenter.swift in Sources */,
 				786F3614239A6F8A00F86DA3 /* AppDelegate.swift in Sources */,
 				786F3616239A6F8A00F86DA3 /* SceneDelegate.swift in Sources */,
+				786F3632239A895600F86DA3 /* ModuleBuilder.swift in Sources */,
+				786F3634239A9B4A00F86DA3 /* NetworkService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,6 +458,7 @@
 		};
 		786F3625239A6F8C00F86DA3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3958C5DB7DB827C939CB3452 /* Pods-Exchange Rates Test App.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -294,12 +471,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.oskulska.Exchange-Rates-Test-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		786F3626239A6F8C00F86DA3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 22A95BE503FA45D0AA877B1E /* Pods-Exchange Rates Test App.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -312,7 +490,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.oskulska.Exchange-Rates-Test-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
