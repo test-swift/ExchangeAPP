@@ -10,16 +10,15 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-protocol NetworkServiceProtocol {
-    func getCurrencyRate(completion: @escaping  (Swift.Result<[Currency]?, Error>) -> ())
-    func getCurrencyRateHistory(completion: @escaping (Swift.Result<[Currency]?, Error>) -> Void)
+protocol NetworkServiceProtocol: AnyObject {
+    func getCurrencyRate(completion: @escaping  (Swift.Result<Dictionary<String, Any>, Error>) -> ())
+    func getCurrencyRateHistory(symbols: String, fromTo: (String, String), completion: @escaping (Swift.Result<Dictionary<String, Double>, Error>) -> Void)
 }
 
 class NetworkService: NetworkServiceProtocol{
-    
-    func getCurrencyRate(completion: @escaping (Swift.Result<[Currency]?, Error>) -> Void) {
-        guard let url = URL(string: "https://api.exchangeratesapi.io/latest") else {
-            return }
+
+     func getCurrencyRate(completion: @escaping  (Swift.Result<Dictionary<String, Any>, Error>) -> ()) {
+        guard let url = URL(string: "https://api.exchangeratesapi.io/latest") else { return }
           Alamofire.request(url,
                             method: .get,
                             parameters: ["base": "USD"])
@@ -27,37 +26,36 @@ class NetworkService: NetworkServiceProtocol{
           .responseJSON { response in
           switch response.result {
           case .success(let value):
-            var result = [Currency]()
-              let json = JSON(value)
-              for jsonObject in json["rates"].dictionary!
-                {
-                    let val = Currency(name: jsonObject.key, rates: jsonObject.value.double!)
-                    result.append(val)
-            }
-            completion(.success(result))
+            let json = JSON(value)
+            completion(.success(json["rates"].dictionaryObject!))
           case .failure(let error):
             completion(.failure(error))
           }
         }
 }
     
-        func getCurrencyRateHistory(completion: @escaping (Swift.Result<[Currency]?, Error>) -> Void) {
+    func getCurrencyRateHistory(symbols: String, fromTo: (String, String), completion: @escaping (Swift.Result<Dictionary<String, Double>, Error>) -> Void) {
             guard let url = URL(string: "https://api.exchangeratesapi.io/history") else {
                 return }
               Alamofire.request(url,
                                 method: .get,
                                 parameters: ["base": "USD",
-                                             "symbols": "USD",
-                                            "start_at":"2019-11-27",
-                                            "end_at":"2019-12-03"]
+                                             "symbols": symbols,
+                                             "start_at":fromTo.0,
+                                             "end_at":fromTo.1]
                                 )
               .validate()
               .responseJSON { response in
               switch response.result {
               case .success(let value):
-                print(value)
+                let res = JSON(value)
+                var d = [String: Double]()
+                for val in res["rates"]{
+                    d[val.0] = val.1[symbols].double
+                }
+                completion(.success(d))
               case .failure(let error):
-                print(error)
+                completion(.failure(error))
               }
             }
     }

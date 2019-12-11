@@ -6,6 +6,7 @@ target 'Exchange Rates Test App' do
 	pod 'RealmSwift'
 	pod 'Alamofire'
 	pod 'SwiftyJSON'
+	pod 'Charts'
   use_frameworks!
 
   # Pods for Exchange Rates Test App

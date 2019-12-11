@@ -10,7 +10,9 @@
 		7829F804239E6C7100797291 /* DetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7829F803239E6C7100797291 /* DetailPresenter.swift */; };
 		7829F809239E71AD00797291 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7829F807239E71AD00797291 /* DetailViewController.swift */; };
 		7829F80A239E71AD00797291 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7829F808239E71AD00797291 /* DetailViewController.xib */; };
-		7829F80C239E8EA200797291 /* DataBaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7829F80B239E8EA200797291 /* DataBaseService.swift */; };
+		7829F80C239E8EA200797291 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7829F80B239E8EA200797291 /* RealmService.swift */; };
+		786E3C0D23A00E9A007223CE /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786E3C0B23A00E9A007223CE /* MainTableViewCell.swift */; };
+		786E3C0E23A00E9A007223CE /* MainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 786E3C0C23A00E9A007223CE /* MainTableViewCell.xib */; };
 		786F3614239A6F8A00F86DA3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786F3613239A6F8A00F86DA3 /* AppDelegate.swift */; };
 		786F3616239A6F8A00F86DA3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786F3615239A6F8A00F86DA3 /* SceneDelegate.swift */; };
 		786F3618239A6F8A00F86DA3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786F3617239A6F8A00F86DA3 /* MainViewController.swift */; };
@@ -32,7 +34,9 @@
 		7829F803239E6C7100797291 /* DetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPresenter.swift; sourceTree = "<group>"; };
 		7829F807239E71AD00797291 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		7829F808239E71AD00797291 /* DetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
-		7829F80B239E8EA200797291 /* DataBaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseService.swift; sourceTree = "<group>"; };
+		7829F80B239E8EA200797291 /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
+		786E3C0B23A00E9A007223CE /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
+		786E3C0C23A00E9A007223CE /* MainTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainTableViewCell.xib; sourceTree = "<group>"; };
 		786F3610239A6F8900F86DA3 /* Exchange Rates Test App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Exchange Rates Test App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		786F3613239A6F8A00F86DA3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		786F3615239A6F8A00F86DA3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -73,16 +77,8 @@
 			children = (
 				7829F802239E69B600797291 /* View */,
 				7829F801239E69AD00797291 /* Presenter */,
-				7829F7FF239E698D00797291 /* Model */,
 			);
 			path = DetailModule;
-			sourceTree = "<group>";
-		};
-		7829F7FF239E698D00797291 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		7829F801239E69AD00797291 /* Presenter */ = {
@@ -152,6 +148,8 @@
 			children = (
 				786F3617239A6F8A00F86DA3 /* MainViewController.swift */,
 				786F362F239A86B300F86DA3 /* MainViewController.xib */,
+				786E3C0B23A00E9A007223CE /* MainTableViewCell.swift */,
+				786E3C0C23A00E9A007223CE /* MainTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -176,7 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				786F3633239A9B4A00F86DA3 /* NetworkService.swift */,
-				7829F80B239E8EA200797291 /* DataBaseService.swift */,
+				7829F80B239E8EA200797291 /* RealmService.swift */,
 			);
 			path = ServiceLayer;
 			sourceTree = "<group>";
@@ -250,6 +248,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				786E3C0E23A00E9A007223CE /* MainTableViewCell.xib in Resources */,
 				786F3620239A6F8C00F86DA3 /* LaunchScreen.storyboard in Resources */,
 				786F361D239A6F8C00F86DA3 /* Assets.xcassets in Resources */,
 				7829F80A239E71AD00797291 /* DetailViewController.xib in Resources */,
@@ -307,7 +306,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7829F80C239E8EA200797291 /* DataBaseService.swift in Sources */,
+				786E3C0D23A00E9A007223CE /* MainTableViewCell.swift in Sources */,
+				7829F80C239E8EA200797291 /* RealmService.swift in Sources */,
 				7829F809239E71AD00797291 /* DetailViewController.swift in Sources */,
 				786F362A239A792F00F86DA3 /* MainPresenter.swift in Sources */,
 				786F3628239A788300F86DA3 /* Currency.swift in Sources */,

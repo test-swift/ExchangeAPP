@@ -7,8 +7,21 @@
 //
 
 import Foundation
+import RealmSwift
 
-struct Currency: Decodable{
-    let name: String
-    let rates: Double
+class Curr: Object {
+    
+    @objc dynamic var name = ""
+    @objc dynamic var rates = ""
+    @objc dynamic var ID = UUID().uuidString
+    
+    override static func primaryKey() -> String? {
+      return "ID"
+    }
+    
+    convenience init(name: String, rates: Double) {
+        self.init()
+        self.name = name
+        self.rates = String(format:"%.2f", rates)
+    }
 }

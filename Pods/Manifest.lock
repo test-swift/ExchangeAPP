@@ -1,5 +1,8 @@
 PODS:
   - Alamofire (4.9.1)
+  - Charts (3.4.0):
+    - Charts/Core (= 3.4.0)
+  - Charts/Core (3.4.0)
   - Realm (4.1.1):
     - Realm/Headers (= 4.1.1)
   - Realm/Headers (4.1.1)
@@ -9,22 +12,25 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - Charts
   - RealmSwift
   - SwiftyJSON
 
 SPEC REPOS:
   trunk:
     - Alamofire
+    - Charts
     - Realm
     - RealmSwift
     - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  Charts: 74c9f256eaf0460c0c416522d1cf8c634ea6b286
   Realm: 25f0a8244cbb1c2271c922963ea8666fc2d8104d
   RealmSwift: 9e2657b33764f80e4a4dffd6d440e24715782052
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: cc3ff8cdaad7a72918c88037d6981355a6e3819e
+PODFILE CHECKSUM: 543e7e9d9237468a10e248c8cedfb5af7ee55656
 
 COCOAPODS: 1.8.4

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -15,27 +15,39 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="u6w-En-zXd">
-                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <rect key="frame" x="0.0" y="40" width="414" height="696"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="vbw-bM-aXY"/>
                         <outlet property="delegate" destination="-1" id="C4B-RW-5yq"/>
                     </connections>
                 </tableView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Updated:  " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1MH-Pd-h8F">
+                    <rect key="frame" x="10" y="0.0" width="394" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="wd2-MS-pJv"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="u6w-En-zXd" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="EWl-UC-HDb"/>
-                <constraint firstItem="u6w-En-zXd" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="SV3-1Z-psv"/>
-                <constraint firstItem="u6w-En-zXd" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="ei1-Vb-cHI"/>
-                <constraint firstItem="u6w-En-zXd" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="rNc-T4-Vkj"/>
+                <constraint firstItem="1MH-Pd-h8F" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="Ere-DO-qll"/>
+                <constraint firstItem="1MH-Pd-h8F" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="Fd1-8T-O8E"/>
+                <constraint firstItem="u6w-En-zXd" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Nwp-Sd-sMY"/>
+                <constraint firstItem="u6w-En-zXd" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="PDb-tZ-vm7"/>
+                <constraint firstItem="u6w-En-zXd" firstAttribute="top" secondItem="1MH-Pd-h8F" secondAttribute="bottom" id="h1g-Lh-dsT"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="1MH-Pd-h8F" secondAttribute="trailing" constant="10" id="i3D-if-9Xq"/>
+                <constraint firstItem="u6w-En-zXd" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="tvl-SV-BOw"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="2.8985507246376816" y="19.419642857142858"/>
+            <point key="canvasLocation" x="2.8985507246376816" y="18.75"/>
         </view>
     </objects>
 </document>

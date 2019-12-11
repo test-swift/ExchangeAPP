@@ -9,25 +9,25 @@
 import UIKit
 
 protocol Builder {
-    static func createMainModule() -> UIViewController
-    static func createDetailModule() -> UIViewController
+//    static func createMainModule() -> UIViewController
+    static func createDetailModule(for symbol: String) -> UIViewController
 }
 
 class ModuleBuilder: Builder{
     
     static func createMainModule() -> UIViewController {
-//        let currencyModel = Currency(name: "", rates: 2.344)
         let view = MainViewController()
+        let db = RealmService()
         let network = NetworkService()
-        let presenter = MainPresenter(view: view, network: network)
+        let presenter = MainPresenter(view: view, network: network, db: db)
         view.presenter = presenter
         return view
     }
     
-    static func createDetailModule() -> UIViewController {
-            let view = DetailViewController()
-            let network = NetworkService()
-            let presenter = DetailPresenter(view: view, network: network)
+    static func createDetailModule(for symbol: String) -> UIViewController {
+        let view = DetailViewController()
+        let network = NetworkService()
+        let presenter = DetailPresenter(view: view, network: network, symbol: symbol)
             view.presenter = presenter
             return view
         }
