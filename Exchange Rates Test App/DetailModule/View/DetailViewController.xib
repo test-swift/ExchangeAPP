@@ -9,8 +9,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailViewController" customModule="Exchange_Rates_Test_App" customModuleProvider="target">
             <connections>
-                <outlet property="mChart" destination="JOj-my-w8I" id="AQM-8v-oZq"/>
-                <outlet property="nameLabel" destination="uok-nj-pYp" id="usE-pM-BtJ"/>
+                <outlet property="diagramView" destination="DZq-4S-g6i" id="oJY-eh-0uO"/>
+                <outlet property="linearDiagram" destination="JOj-my-w8I" id="AQM-8v-oZq"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -19,20 +19,25 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uok-nj-pYp">
-                    <rect key="frame" x="90" y="56" width="234" height="137"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JOj-my-w8I" customClass="LineChartView" customModule="Charts">
-                    <rect key="frame" x="0.0" y="235" width="414" height="514"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DZq-4S-g6i">
+                    <rect key="frame" x="12" y="144" width="390" height="504"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JOj-my-w8I" customClass="LineChartView" customModule="Charts">
+                            <rect key="frame" x="5" y="5" width="380" height="355"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="DZq-4S-g6i" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="12" id="37r-jg-cuz"/>
+                <constraint firstItem="DZq-4S-g6i" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="100" id="4UJ-28-Cu9"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="DZq-4S-g6i" secondAttribute="bottom" constant="214" id="ssu-ec-Spk"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="DZq-4S-g6i" secondAttribute="trailing" constant="12" id="xyu-pq-fZa"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="137.68115942028987" y="107.8125"/>
         </view>

@@ -12,30 +12,31 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     var presenter: MainViewPresenterProtocol!
+    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         let mainTableCell = UINib(nibName: "MainTableViewCell", bundle: nil)
         tableView.register(mainTableCell, forCellReuseIdentifier: "MainTableViewCell")
         setBasicUI()
     }
     
-    func setBasicUI(){
-        tableView.separatorStyle = .none
+    private func setBasicUI(){
         
+        tableView.separatorStyle = .none
+        //MARK: Set Top NavBar
         let navLabel = UILabel()
         let navTitle = NSMutableAttributedString(string: "Exchange Rate", attributes:[
-            NSAttributedString.Key.foregroundColor: UIColor(red:0.95, green:0.89, blue:0.87, alpha:1.0),
+            NSAttributedString.Key.foregroundColor: UIColor.white,
             NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18.0, weight: UIFont.Weight.bold)])
-        
         navLabel.attributedText = navTitle
         self.navigationItem.titleView = navLabel
         self.navigationController?.navigationBar.topItem?.titleView = navLabel
-        
-        self.navigationController?.navigationBar.barTintColor = UIColor(red:0.40, green:0.45, blue:0.57, alpha:0.5)
+        self.navigationController?.navigationBar.barTintColor = UIColor(red:0.51, green:0.72, blue:0.29, alpha:1.0)
+        self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.shadowImage =  UIImage()
-        self.view.backgroundColor = UIColor(red:0.40, green:0.45, blue:0.57, alpha:0.6)
+        self.view.backgroundColor = UIColor(red:0.51, green:0.72, blue:0.29, alpha:1.0)
+        self.navigationController?.navigationItem.leftBarButtonItem?.tintColor = UIColor.white
     }
 }
 
@@ -59,12 +60,27 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate{
 }
 
 extension MainViewController: MainViewProtocol{
-        
+    func showLoadingAnimation() {
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.style = .large
+        activityIndicator.color = .green
+        view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+    }
+    
+    func stopShowingLoadingAnimation() {
+        activityIndicator.stopAnimating()
+    }
+    
     func successRequest() {
+        activityIndicator.stopAnimating()
         tableView.reloadData()
     }
     
     func failureRequest() {
-        print("error")
+        let alert = UIAlertController(title: "An Error Occurred", message: "Service Not Available at this moment", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(alert, animated: true)
     }
 }

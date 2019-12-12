@@ -10,38 +10,31 @@ import Foundation
 import RealmSwift
 
 protocol RealmServiceProtocol: AnyObject {
-    
-    func updateObjects(with param: [String: Double])
-    func createObjects(from dictionary: [String: Double])
+    func deleteObjects()
+    func createObjects(from dictionary: [String: Any])
     var realm: Realm { get }
 }
 
-
 class RealmService: RealmServiceProtocol{
-
-//     lazy var comf = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
-//    var realm = try! Realm(configuration: Realm.Configuration(deleteRealmIfMigrationNeeded: true))
-     var realm = try! Realm()
+    //    var realm = try! Realm(configuration: Realm.Configuration(deleteRealmIfMigrationNeeded: true))
+    var realm = try! Realm()
     
-    func updateObjects(with dictionary: [String: Double]) {
-        
-        let objs = realm.objects(Curr.self)
-        
+    func deleteObjects() {
         do {
             try realm.write{
-                realm.add(objs, update: .modified)
+                realm.deleteAll()
             }
         } catch {
-            print(error)
-            }
-    
+            post(error)
+        }
     }
     
-    func createObjects(from dictionary: [String: Double]) {
-        
+    func createObjects(from dictionary: [String: Any]) {
         var objs = [Curr]()
+        let sortedDict = dictionary.sorted{$0.key > $1.key}
 
-        for (key, value) in dictionary{
+        for (key, value) in sortedDict{
+            guard let value = value as? Double else {return}
             objs.append(Curr(name: key, rates: value))
         }
         do {
@@ -49,11 +42,12 @@ class RealmService: RealmServiceProtocol{
                 realm.add(objs, update: .modified)
             }
         } catch {
-            
+            post(error)
         }
     }
-
     
     
-    
+    private func post(_ error: Error){
+        NotificationCenter.default.post(name: Notification.Name("RealmError"), object: error)
+    }
 }

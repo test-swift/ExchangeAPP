@@ -9,7 +9,7 @@
 import UIKit
 
 protocol Builder {
-//    static func createMainModule() -> UIViewController
+    static func createMainModule() -> UIViewController
     static func createDetailModule(for symbol: String) -> UIViewController
 }
 

@@ -13,10 +13,9 @@ class Curr: Object {
     
     @objc dynamic var name = ""
     @objc dynamic var rates = ""
-    @objc dynamic var ID = UUID().uuidString
     
     override static func primaryKey() -> String? {
-      return "ID"
+      return "name"
     }
     
     convenience init(name: String, rates: Double) {

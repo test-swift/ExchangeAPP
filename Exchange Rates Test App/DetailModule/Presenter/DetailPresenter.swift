@@ -9,15 +9,14 @@
 import Foundation
 
 protocol DetailViewProtocol: AnyObject{
-    func successRequest()
-    func failureRequest()
     func setChart(values: [Double], label: [String])
+    func failureRequest()
 }
 
 protocol DetailViewPresenterPrototcol: AnyObject {
     init(view: DetailViewProtocol, network: NetworkServiceProtocol, symbol: String)
     func getRateHistory()
-    var symbol: String { get  }
+    var symbol: String { get }
 }
 
 
@@ -28,8 +27,6 @@ class DetailPresenter: DetailViewPresenterPrototcol{
     var label: [String] = []
     var date: [Double] = []
     
-    
-    
     required init(view: DetailViewProtocol, network: NetworkServiceProtocol, symbol: String) {
         self.network = network
         self.view = view
@@ -37,32 +34,48 @@ class DetailPresenter: DetailViewPresenterPrototcol{
         getRateHistory()
     }
     
+    func getRateHistory() {
+        network.getCurrencyRateHistory(symbols: symbol, fromTo: getDateForRequest()){ [weak self] result in
+            guard let self = self else {return}
+            DispatchQueue.main.async {
+                switch result {
+                case .failure:
+                    self.view?.failureRequest()
+                case .success(let data):
+                    let sorted = data.sorted{$0.key < $1.key}
+                    self.label = sorted.map({ $0.key })
+                    self.date = sorted.map({ $0.value })
+                    self.changeDate(date: self.label)
+                    self.view?.setChart(values: self.date, label: self.label)
+                }
+            }
+        }
+    }
     
-    func getDateForRequest() -> (String, String){
+    private  func getDateForRequest() -> (String, String){
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let currDate = dateFormatter.string(from: Date())
         let  prev = Calendar.current.date(byAdding: .day, value: -7, to: Date())
         let oldDate = dateFormatter.string(from: prev!)
-        print(currDate, oldDate)
         return(oldDate, currDate)
     }
     
-    
-    func getRateHistory() {
-        network.getCurrencyRateHistory(symbols: symbol, fromTo: getDateForRequest()){ [weak self] result in
-           DispatchQueue.main.async {
-            switch result {
-            case .failure:
-                self?.view?.failureRequest()
-            case .success(let data):
-                 let sorted = data.sorted{$0.key > $1.key}
-                 print(sorted)
-                self?.label = sorted.map({ $0.key })
-                self?.date = sorted.map({ $0.value })
-                 self?.view?.setChart(values: self!.date, label: self!.label)
-            }
-            }
+    private func changeDate(date: [String]) -> [String]{
+        
+       let dateFormatter = DateFormatter()
+       dateFormatter.dateFormat = "yyyy-MM-dd"
+       dateFormatter.locale = Locale.init(identifier: "en_GB")
+        let newDate: [String] = []
+        for dateString in date {
+            print(dateString)
+        let dateObj = dateFormatter.date(from: dateString)
+        
+        dateFormatter.dateFormat = "MMM dd"
+            print(dateObj)
+//            newDate.append(dateFormatter.string(from: dateObj!))
+//        print("Dateobj:", newDate)
         }
+        return newDate
     }
 }

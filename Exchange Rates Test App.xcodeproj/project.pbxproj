@@ -72,6 +72,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		780ECA2523A0EC82008C7C50 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				786F3613239A6F8A00F86DA3 /* AppDelegate.swift */,
+				786F3615239A6F8A00F86DA3 /* SceneDelegate.swift */,
+				786F361C239A6F8C00F86DA3 /* Assets.xcassets */,
+				786F3619239A6F8A00F86DA3 /* Main.storyboard */,
+				786F361E239A6F8C00F86DA3 /* LaunchScreen.storyboard */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
 		7829F7FE239E693A00797291 /* DetailModule */ = {
 			isa = PBXGroup;
 			children = (
@@ -119,15 +131,10 @@
 		786F3612239A6F8A00F86DA3 /* Exchange Rates Test App */ = {
 			isa = PBXGroup;
 			children = (
+				786F3621239A6F8C00F86DA3 /* Info.plist */,
+				780ECA2523A0EC82008C7C50 /* App */,
 				7829F7FE239E693A00797291 /* DetailModule */,
 				786F362B239A793F00F86DA3 /* MainModule */,
-				786F3613239A6F8A00F86DA3 /* AppDelegate.swift */,
-				786F3615239A6F8A00F86DA3 /* SceneDelegate.swift */,
-				786F3619239A6F8A00F86DA3 /* Main.storyboard */,
-				786F361C239A6F8C00F86DA3 /* Assets.xcassets */,
-				786F361E239A6F8C00F86DA3 /* LaunchScreen.storyboard */,
-				786F3621239A6F8C00F86DA3 /* Info.plist */,
-				786F3631239A895600F86DA3 /* ModuleBuilder.swift */,
 				786F3635239A9B5A00F86DA3 /* ServiceLayer */,
 			);
 			path = "Exchange Rates Test App";
@@ -173,6 +180,7 @@
 		786F3635239A9B5A00F86DA3 /* ServiceLayer */ = {
 			isa = PBXGroup;
 			children = (
+				786F3631239A895600F86DA3 /* ModuleBuilder.swift */,
 				786F3633239A9B4A00F86DA3 /* NetworkService.swift */,
 				7829F80B239E8EA200797291 /* RealmService.swift */,
 			);
