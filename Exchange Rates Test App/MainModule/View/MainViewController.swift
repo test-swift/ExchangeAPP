@@ -18,9 +18,9 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         let mainTableCell = UINib(nibName: "MainTableViewCell", bundle: nil)
         tableView.register(mainTableCell, forCellReuseIdentifier: "MainTableViewCell")
-        print(self.navigationController?.navigationBar.topItem?.leftBarButtonItems)
-        setBasicUI()
 
+        setBasicUI()
+ 
     }
     
     private func setBasicUI(){
@@ -56,12 +56,15 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = ModuleBuilder.createDetailModule(for: (presenter.currencyRates?[indexPath.row].name)!)
+        let vc = ModuleBuilder.createDetailModule(for: (presenter.currencyRates?[indexPath.row].name) ?? "USD")
         show(vc, sender: self)
     }
 }
 
 extension MainViewController: MainViewProtocol{
+  
+
+    
     func showLoadingAnimation() {
         activityIndicator.center = self.view.center
         activityIndicator.hidesWhenStopped = true

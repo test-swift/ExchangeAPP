@@ -12,6 +12,8 @@ import Foundation
 protocol DetailViewProtocol: AnyObject{
     func setChart(values: [Double], label: [String])
     func failureRequest()
+    func showLoadingAnimation()
+    func stopShowingLoadingAnimation()
     func setLabels(minValue: String, maxValue: String, imgName: String)
 }
 
@@ -37,6 +39,7 @@ class DetailPresenter: DetailViewPresenterPrototcol{
         let minValue = String(format:"%.4f", data.values.min() ?? 0)
         let maxValue = String(format:"%.4f", data.values.max() ?? 0)
         
+
         self.view?.setChart(values: exchangeData, label: label)
         self.view?.setLabels(minValue: minValue, maxValue: maxValue, imgName: imageName)
     }
@@ -55,15 +58,18 @@ class DetailPresenter: DetailViewPresenterPrototcol{
     }
     
     func getRateHistory() {
+//
         network.getCurrencyRateHistory(symbols: symbol, fromTo: getDateForRequest()){ [weak self] result in
             guard let self = self else {return}
             DispatchQueue.main.async {
+                 self.view?.showLoadingAnimation()
                 switch result {
                 case .failure:
+                    self.view?.stopShowingLoadingAnimation()
                     self.view?.failureRequest()
                 case .success(let data):
                     self.setData(data: data)
-                    self.view?.setChart(values: self.date, label: self.label)
+                    self.view?.stopShowingLoadingAnimation()
                 }
             }
         }
@@ -78,21 +84,4 @@ class DetailPresenter: DetailViewPresenterPrototcol{
         return(oldDate, currDate)
     }
     
-    private func changeDate(date: [String]) -> [String]{
-        
-       let dateFormatter = DateFormatter()
-       dateFormatter.dateFormat = "yyyy-MM-dd"
-       dateFormatter.locale = Locale.init(identifier: "en_GB")
-        let newDate: [String] = []
-        for dateString in date {
-//            print(dateString)
-        let dateObj = dateFormatter.date(from: dateString)
-        
-        dateFormatter.dateFormat = "MMM dd"
-//            print(dateObj)
-//            newDate.append(dateFormatter.string(from: dateObj!))
-//        print("Dateobj:", newDate)
-        }
-        return newDate
-    }
 }

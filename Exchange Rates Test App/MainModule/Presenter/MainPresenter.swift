@@ -27,14 +27,14 @@ class MainPresenter: MainViewPresenterProtocol {
     weak var view: MainViewProtocol?
     let network: NetworkServiceProtocol!
     let db: RealmServiceProtocol!
-    var timer = Timer()
+    var  refreshTime = 0.0
+    
     
     required init(view: MainViewProtocol, network: NetworkServiceProtocol, db: RealmServiceProtocol) {
         self.view = view
         self.network = network
         self.db = db
         
-//        self.timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
         
         //                try! self.db.realm.write {
         //                    db.realm.deleteAll()
@@ -84,17 +84,16 @@ class MainPresenter: MainViewPresenterProtocol {
             UserDefaults.standard.set(Date(), forKey: "LastModifiedDate")
             completion(false)
         } else {
-            let interval = Date().timeIntervalSince(lastModifiedDate as! Date)
-            print(interval)
-            if interval > 10*60{
+            
+            refreshTime = Date().timeIntervalSince(lastModifiedDate as! Date)
+            if refreshTime > 10*60{
+                
                 UserDefaults.standard.set(Date(), forKey: "LastModifiedDate")
                 completion(false)
             }
         }
         completion(true)
     }
-    deinit {
-        self.timer.invalidate()
-    }
+    
 }
 
