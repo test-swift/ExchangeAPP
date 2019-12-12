@@ -34,7 +34,7 @@ class MainPresenter: MainViewPresenterProtocol {
         self.network = network
         self.db = db
         
-        self.timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
+//        self.timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
         
         //                try! self.db.realm.write {
         //                    db.realm.deleteAll()
@@ -51,6 +51,7 @@ class MainPresenter: MainViewPresenterProtocol {
     }
     
     func getCurrencyFromAPI() {
+        print("i am here")
         network.getCurrencyRate { [weak self] result in
             guard let self = self else {return}
             DispatchQueue.main.async {

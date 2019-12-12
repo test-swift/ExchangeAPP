@@ -8,19 +8,39 @@
 
 import Foundation
 
+
 protocol DetailViewProtocol: AnyObject{
     func setChart(values: [Double], label: [String])
     func failureRequest()
+    func setLabels(minValue: String, maxValue: String, imgName: String)
 }
 
 protocol DetailViewPresenterPrototcol: AnyObject {
     init(view: DetailViewProtocol, network: NetworkServiceProtocol, symbol: String)
     func getRateHistory()
+    func setData(data: [String: Double])
     var symbol: String { get }
 }
 
 
 class DetailPresenter: DetailViewPresenterPrototcol{
+    func setData(data: [String: Double]) {
+
+        var imageName: String
+        let sorted = data.sorted{$0.key < $1.key}
+        if sorted.first?.value ?? 0 > sorted.last?.value ?? 0{
+            imageName = "reduction"
+        } else { imageName = "income" }
+
+        let label = sorted.map({ $0.key }) 
+        let exchangeData = sorted.map({ $0.value })
+        let minValue = String(format:"%.4f", data.values.min() ?? 0)
+        let maxValue = String(format:"%.4f", data.values.max() ?? 0)
+        
+        self.view?.setChart(values: exchangeData, label: label)
+        self.view?.setLabels(minValue: minValue, maxValue: maxValue, imgName: imageName)
+    }
+    
     var symbol: String
     weak var view: DetailViewProtocol?
     let network: NetworkServiceProtocol!
@@ -42,10 +62,7 @@ class DetailPresenter: DetailViewPresenterPrototcol{
                 case .failure:
                     self.view?.failureRequest()
                 case .success(let data):
-                    let sorted = data.sorted{$0.key < $1.key}
-                    self.label = sorted.map({ $0.key })
-                    self.date = sorted.map({ $0.value })
-                    self.changeDate(date: self.label)
+                    self.setData(data: data)
                     self.view?.setChart(values: self.date, label: self.label)
                 }
             }
@@ -68,11 +85,11 @@ class DetailPresenter: DetailViewPresenterPrototcol{
        dateFormatter.locale = Locale.init(identifier: "en_GB")
         let newDate: [String] = []
         for dateString in date {
-            print(dateString)
+//            print(dateString)
         let dateObj = dateFormatter.date(from: dateString)
         
         dateFormatter.dateFormat = "MMM dd"
-            print(dateObj)
+//            print(dateObj)
 //            newDate.append(dateFormatter.string(from: dateObj!))
 //        print("Dateobj:", newDate)
         }

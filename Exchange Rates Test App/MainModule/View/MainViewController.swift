@@ -18,7 +18,9 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         let mainTableCell = UINib(nibName: "MainTableViewCell", bundle: nil)
         tableView.register(mainTableCell, forCellReuseIdentifier: "MainTableViewCell")
+        print(self.navigationController?.navigationBar.topItem?.leftBarButtonItems)
         setBasicUI()
+
     }
     
     private func setBasicUI(){
@@ -79,7 +81,7 @@ extension MainViewController: MainViewProtocol{
     }
     
     func failureRequest() {
-        let alert = UIAlertController(title: "An Error Occurred", message: "Service Not Available at this moment", preferredStyle: .alert)
+        let alert = UIAlertController(title: "An Error Occurred", message: "Service Not Available At This Moment, Unable To Refresh Data ", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         self.present(alert, animated: true)
     }

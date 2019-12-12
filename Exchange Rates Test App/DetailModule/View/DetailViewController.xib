@@ -10,7 +10,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailViewController" customModule="Exchange_Rates_Test_App" customModuleProvider="target">
             <connections>
                 <outlet property="diagramView" destination="DZq-4S-g6i" id="oJY-eh-0uO"/>
+                <outlet property="img" destination="U77-yz-jSD" id="U72-fH-m7z"/>
                 <outlet property="linearDiagram" destination="JOj-my-w8I" id="AQM-8v-oZq"/>
+                <outlet property="maxValue" destination="e6j-ao-M7x" id="CFC-VG-GdF"/>
+                <outlet property="minValue" destination="ayu-od-gdT" id="XLo-zu-e0P"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,26 +23,63 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DZq-4S-g6i">
-                    <rect key="frame" x="12" y="144" width="390" height="504"/>
+                    <rect key="frame" x="10" y="153" width="394" height="704"/>
                     <subviews>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JOj-my-w8I" customClass="LineChartView" customModule="Charts">
-                            <rect key="frame" x="5" y="5" width="380" height="355"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JOj-my-w8I" customClass="LineChartView" customModule="Charts">
+                            <rect key="frame" x="0.0" y="0.0" width="394" height="704"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         </view>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="JOj-my-w8I" firstAttribute="leading" secondItem="DZq-4S-g6i" secondAttribute="leading" id="8Qe-Q0-lOX"/>
+                        <constraint firstItem="JOj-my-w8I" firstAttribute="top" secondItem="DZq-4S-g6i" secondAttribute="top" id="Klc-u9-bIa"/>
+                        <constraint firstAttribute="trailing" secondItem="JOj-my-w8I" secondAttribute="trailing" id="LSj-zc-qgk"/>
+                        <constraint firstAttribute="bottom" secondItem="JOj-my-w8I" secondAttribute="bottom" id="Ps4-rW-oEg"/>
+                    </constraints>
                 </view>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="s4B-dh-4AR">
+                    <rect key="frame" x="10" y="49" width="56" height="74"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ayu-od-gdT">
+                            <rect key="frame" x="0.0" y="0.0" width="56" height="32"/>
+                            <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
+                            <state key="normal" title="Button"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e6j-ao-M7x">
+                            <rect key="frame" x="0.0" y="42" width="56" height="32"/>
+                            <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
+                            <state key="normal" title="Button"/>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </stackView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Total Dynamic:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gqk-On-6Wz">
+                    <rect key="frame" x="249" y="47" width="113" height="20.5"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="income" translatesAutoresizingMaskIntoConstraints="NO" id="U77-yz-jSD">
+                    <rect key="frame" x="276" y="76" width="50" height="50"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="DZq-4S-g6i" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="12" id="37r-jg-cuz"/>
-                <constraint firstItem="DZq-4S-g6i" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="100" id="4UJ-28-Cu9"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="DZq-4S-g6i" secondAttribute="bottom" constant="214" id="ssu-ec-Spk"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="DZq-4S-g6i" secondAttribute="trailing" constant="12" id="xyu-pq-fZa"/>
+                <constraint firstItem="s4B-dh-4AR" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="4oL-dM-hGL"/>
+                <constraint firstItem="s4B-dh-4AR" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="5" id="ChV-v1-x51"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="DZq-4S-g6i" secondAttribute="bottom" constant="5" id="YIg-k4-gXG"/>
+                <constraint firstItem="DZq-4S-g6i" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="fFo-bT-CUu"/>
+                <constraint firstItem="DZq-4S-g6i" firstAttribute="top" secondItem="s4B-dh-4AR" secondAttribute="bottom" constant="30" id="mH7-Ej-NaG"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="DZq-4S-g6i" secondAttribute="trailing" constant="10" id="qhS-KX-czr"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="137.68115942028987" y="107.8125"/>
         </view>
     </objects>
+    <resources>
+        <image name="income" width="128" height="128"/>
+    </resources>
 </document>
