@@ -9,7 +9,6 @@
 import UIKit
 
 class MainViewController: UIViewController {
-    
     @IBOutlet weak var tableView: UITableView!
     var presenter: MainViewPresenterProtocol!
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
@@ -18,15 +17,11 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         let mainTableCell = UINib(nibName: "MainTableViewCell", bundle: nil)
         tableView.register(mainTableCell, forCellReuseIdentifier: "MainTableViewCell")
-
-        setBasicUI()
- 
+        tableView.separatorStyle = .none
+        setNavBar()
     }
     
-    private func setBasicUI(){
-        
-        tableView.separatorStyle = .none
-        //MARK: Set Top NavBar
+    private func setNavBar(){
         let navLabel = UILabel()
         let navTitle = NSMutableAttributedString(string: "Exchange Rate", attributes:[
             NSAttributedString.Key.foregroundColor: UIColor.white,
@@ -43,7 +38,6 @@ class MainViewController: UIViewController {
 }
 
 extension MainViewController: UITableViewDataSource, UITableViewDelegate{
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return presenter.currencyRates?.count ?? 0
     }
@@ -56,15 +50,13 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = ModuleBuilder.createDetailModule(for: (presenter.currencyRates?[indexPath.row].name) ?? "USD")
+        guard let name = presenter.currencyRates?[indexPath.row].name else {return}
+        let vc = ModuleBuilder.createDetailModule(for: name)
         show(vc, sender: self)
     }
 }
 
 extension MainViewController: MainViewProtocol{
-  
-
-    
     func showLoadingAnimation() {
         activityIndicator.center = self.view.center
         activityIndicator.hidesWhenStopped = true
@@ -84,7 +76,9 @@ extension MainViewController: MainViewProtocol{
     }
     
     func failureRequest() {
-        let alert = UIAlertController(title: "An Error Occurred", message: "Service Not Available At This Moment, Unable To Refresh Data ", preferredStyle: .alert)
+        let alert = UIAlertController(title: "An Error Occurred",
+                                      message: "Service Not Available At This Moment, Unable To Refresh Data ",
+                                      preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         self.present(alert, animated: true)
     }

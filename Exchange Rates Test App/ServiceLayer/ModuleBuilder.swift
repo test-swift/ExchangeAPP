@@ -14,7 +14,6 @@ protocol Builder {
 }
 
 class ModuleBuilder: Builder{
-    
     static func createMainModule() -> UIViewController {
         let view = MainViewController()
         let db = RealmService()
@@ -28,7 +27,7 @@ class ModuleBuilder: Builder{
         let view = DetailViewController()
         let network = NetworkService()
         let presenter = DetailPresenter(view: view, network: network, symbol: symbol)
-            view.presenter = presenter
-            return view
-        }
+        view.presenter = presenter
+        return view
+    }
 }

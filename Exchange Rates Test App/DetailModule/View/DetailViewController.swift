@@ -10,11 +10,9 @@ import UIKit
 import Charts
 
 class DetailViewController: UIViewController {
-    
     @IBOutlet weak var diagramView: UIView!
     @IBOutlet weak var linearDiagram: LineChartView!
-    @IBOutlet weak var minValue: UIButton!
-    @IBOutlet weak var maxValue: UIButton!
+    @IBOutlet var btnStack: [UIButton]!
     @IBOutlet weak var img: UIImageView!
     
     var presenter: DetailViewPresenterPrototcol!
@@ -23,6 +21,13 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.showLoadingAnimation()
+        diagramView.layer.cornerRadius = 10
+        self.diagramView.backgroundColor =  UIColor(red:0.51, green:0.72, blue:0.29, alpha:0.6)
+        self.setNavBar()
+        self.setLabels(minValue: "0", maxValue: "0", imgName: "fag")
+    }
+    
+    private func setNavBar(){
         self.navigationController?.navigationBar.tintColor = UIColor.white
         let navLabel = UILabel()
         let navTitle = NSMutableAttributedString(string: "\(presenter.symbol) Exchange Rate History", attributes:[
@@ -30,27 +35,20 @@ class DetailViewController: UIViewController {
             NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18.0, weight: UIFont.Weight.bold)])
         navLabel.attributedText = navTitle
         self.navigationItem.titleView = navLabel
-        diagramView.layer.cornerRadius = 10
-        self.title = "\(presenter.symbol) Exchange Rate History"
-        self.diagramView.backgroundColor =  UIColor(red:0.51, green:0.72, blue:0.29, alpha:0.6)
-        self.setLabels(minValue: "0", maxValue: "0", imgName: "")
     }
 }
 
 
 extension DetailViewController: DetailViewProtocol{
-    
     func setLabels(minValue: String, maxValue: String, imgName: String)  {
-        
-        self.maxValue.backgroundColor = UIColor(red:0.51, green:0.72, blue:0.29, alpha:0.6)
-        self.minValue.backgroundColor = UIColor(red:0.51, green:0.72, blue:0.29, alpha:0.6)
-        self.minValue.layer.cornerRadius = 10
-        self.maxValue.layer.cornerRadius = 10
-        self.minValue.setTitle("Mininum Rate: \(minValue)", for: .init())
-        self.maxValue.setTitle("Maximum Rate: \(maxValue)", for: .init())
-        self.img.image = UIImage(named: imgName)
-        self.maxValue.setTitleColor(UIColor(red:0.9, green:0.58, blue:0.42, alpha:1.0), for: .init())
-        self.minValue.setTitleColor(UIColor(red:0.9, green:0.58, blue:0.42, alpha:1.0), for: .init())
+        for btn in btnStack{
+            btn.backgroundColor = UIColor(red:0.51, green:0.72, blue:0.29, alpha:0.6)
+            btn.layer.cornerRadius = 10
+            btn.setTitleColor(UIColor(red:0.9, green:0.58, blue:0.42, alpha:1.0), for: .init())
+        }
+        btnStack[0].setTitle("Mininum Rate: \(minValue)", for: .init())
+        btnStack[1].setTitle("Maximum Rate: \(maxValue)", for: .init())
+        img.image = UIImage(named: imgName)
     }
     
     func failureRequest() {
@@ -70,21 +68,19 @@ extension DetailViewController: DetailViewProtocol{
         }
         
         //MARK: Creating line
-        
         let line = LineChartDataSet(entries: dataEntries)
         line.colors = [NSUIColor.blue]
         line.mode = .cubicBezier
         line.cubicIntensity = 0.2
         line.circleRadius = 7
-        
         line.circleHoleRadius = 3
         let gradient = getGradientFilling()
         line.fill = Fill.fillWithLinearGradient(gradient, angle: 90.0)
         line.drawFilledEnabled = true
-        
         let data = LineChartData()
         data.addDataSet(line)
         
+        //MARK: Set axis
         linearDiagram.xAxis.valueFormatter = IndexAxisValueFormatter(values: label)
         linearDiagram.xAxis.granularityEnabled = true
         linearDiagram.xAxis.labelPosition = .bottom
@@ -92,16 +88,10 @@ extension DetailViewController: DetailViewProtocol{
         linearDiagram.data = data
         linearDiagram.leftAxis.labelTextColor = UIColor.clear
         linearDiagram.rightAxis.labelTextColor = UIColor.clear
-        
         linearDiagram.legend.enabled = false
-        
-        
         linearDiagram.rightAxis.xOffset = 0
         linearDiagram.xAxis.labelTextColor = UIColor(red:0.9, green:0.58, blue:0.42, alpha:1.0)
         linearDiagram.xAxis.labelFont = UIFont(name: "ArialMT", size: 10 ) ?? UIFont.italicSystemFont(ofSize: 10)
-        
-        
-        
         linearDiagram.drawGridBackgroundEnabled = false
         linearDiagram.xAxis.drawAxisLineEnabled = false
         linearDiagram.xAxis.drawGridLinesEnabled = false
@@ -120,6 +110,7 @@ extension DetailViewController: DetailViewProtocol{
         let colorLocations: [CGFloat] = [0.7, 0.0]
         return CGGradient.init(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: gradientColors, locations: colorLocations)!
     }
+    
     func showLoadingAnimation() {
         activityIndicator.center = self.view.center
         activityIndicator.hidesWhenStopped = true

@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 protocol DetailViewProtocol: AnyObject{
     func setChart(values: [Double], label: [String])
     func failureRequest()
@@ -26,24 +25,6 @@ protocol DetailViewPresenterPrototcol: AnyObject {
 
 
 class DetailPresenter: DetailViewPresenterPrototcol{
-    func setData(data: [String: Double]) {
-
-        var imageName: String
-        let sorted = data.sorted{$0.key < $1.key}
-        if sorted.first?.value ?? 0 > sorted.last?.value ?? 0{
-            imageName = "reduction"
-        } else { imageName = "income" }
-
-        let label = sorted.map({ $0.key }) 
-        let exchangeData = sorted.map({ $0.value })
-        let minValue = String(format:"%.4f", data.values.min() ?? 0)
-        let maxValue = String(format:"%.4f", data.values.max() ?? 0)
-        
-
-        self.view?.setChart(values: exchangeData, label: label)
-        self.view?.setLabels(minValue: minValue, maxValue: maxValue, imgName: imageName)
-    }
-    
     var symbol: String
     weak var view: DetailViewProtocol?
     let network: NetworkServiceProtocol!
@@ -58,11 +39,10 @@ class DetailPresenter: DetailViewPresenterPrototcol{
     }
     
     func getRateHistory() {
-//
         network.getCurrencyRateHistory(symbols: symbol, fromTo: getDateForRequest()){ [weak self] result in
             guard let self = self else {return}
             DispatchQueue.main.async {
-                 self.view?.showLoadingAnimation()
+                self.view?.showLoadingAnimation()
                 switch result {
                 case .failure:
                     self.view?.stopShowingLoadingAnimation()
@@ -75,6 +55,20 @@ class DetailPresenter: DetailViewPresenterPrototcol{
         }
     }
     
+    func setData(data: [String: Double]) {
+        var imageName: String
+        let sorted = data.sorted{$0.key < $1.key}
+        if sorted.first?.value ?? 0 > sorted.last?.value ?? 0{
+            imageName = "reduction"
+        } else { imageName = "income" }
+        let label = sorted.map({ $0.key })
+        let exchangeData = sorted.map({ $0.value })
+        let minValue = String(format:"%.4f", data.values.min() ?? 0)
+        let maxValue = String(format:"%.4f", data.values.max() ?? 0)
+        self.view?.setChart(values: exchangeData, label: label)
+        self.view?.setLabels(minValue: minValue, maxValue: maxValue, imgName: imageName)
+    }
+    
     private  func getDateForRequest() -> (String, String){
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -83,5 +77,4 @@ class DetailPresenter: DetailViewPresenterPrototcol{
         let oldDate = dateFormatter.string(from: prev!)
         return(oldDate, currDate)
     }
-    
 }

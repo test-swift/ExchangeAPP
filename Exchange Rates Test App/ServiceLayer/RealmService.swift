@@ -18,20 +18,18 @@ protocol RealmServiceProtocol: AnyObject {
 class RealmService: RealmServiceProtocol{
     //    var realm = try! Realm(configuration: Realm.Configuration(deleteRealmIfMigrationNeeded: true))
     var realm = try! Realm()
-    
     func deleteObjects() {
         do {
             try realm.write{
                 realm.deleteAll()
             }
         } catch {
-            post(error)
+            print(error)
         }
     }
     
     func createObjects(from dictionary: [String: Any]) {
         var objs = [Curr]()
-        
         let sortedDict = dictionary.sorted{$0.key > $1.key}
         for (key, value) in sortedDict{
             guard let value = value as? Double else {return}
@@ -43,12 +41,7 @@ class RealmService: RealmServiceProtocol{
                 realm.add(objs, update: .modified)
             }
         } catch {
-            post(error)
+            print(error)
         }
-    }
-    
-    
-    private func post(_ error: Error){
-        NotificationCenter.default.post(name: Notification.Name("RealmError"), object: error)
     }
 }

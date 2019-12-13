@@ -16,7 +16,6 @@ protocol NetworkServiceProtocol: AnyObject {
 }
 
 class NetworkService: NetworkServiceProtocol{
-    
     func getCurrencyRate(completion: @escaping  (Swift.Result<Dictionary<String, Any>, Error>) -> ()) {
         guard let url = URL(string: "https://api.exchangeratesapi.io/latest") else { return }
         Alamofire.request(url,
@@ -42,8 +41,7 @@ class NetworkService: NetworkServiceProtocol{
                           parameters: ["base": "USD",
                                        "symbols": symbols,
                                        "start_at":fromTo.0,
-                                       "end_at":fromTo.1]
-        )
+                                       "end_at":fromTo.1])
             .validate()
             .responseJSON { response in
                 switch response.result {

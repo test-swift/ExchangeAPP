@@ -22,36 +22,28 @@ protocol MainViewPresenterProtocol: AnyObject {
     var currencyRates: Results<Curr>? { get }
 }
 
+
 class MainPresenter: MainViewPresenterProtocol {
     var currencyRates: Results<Curr>?
     weak var view: MainViewProtocol?
     let network: NetworkServiceProtocol!
     let db: RealmServiceProtocol!
-    var  refreshTime = 0.0
-    
     
     required init(view: MainViewProtocol, network: NetworkServiceProtocol, db: RealmServiceProtocol) {
         self.view = view
         self.network = network
         self.db = db
-        
-        
         //                try! self.db.realm.write {
         //                    db.realm.deleteAll()
         //                }
         checkShouldRefreshData{ [weak self] isModified in
             guard let self = self else {return}
-            (isModified && !((self.db.realm.isEmpty))) ?  currencyRates = db.realm.objects(Curr.self) : self.getCurrencyFromAPI()
+            (isModified && !((self.db.realm.isEmpty))) ?
+            currencyRates = db.realm.objects(Curr.self) : self.getCurrencyFromAPI()
         }
     }
     
-    @objc func fireTimer(){
-        getCurrencyFromAPI()
-        print("timer")
-    }
-    
     func getCurrencyFromAPI() {
-        print("i am here")
         network.getCurrencyRate { [weak self] result in
             guard let self = self else {return}
             DispatchQueue.main.async {
@@ -77,23 +69,17 @@ class MainPresenter: MainViewPresenterProtocol {
     }
     
     private func checkShouldRefreshData(completion:(Bool) -> ()) {
-        
         let lastModifiedDate = UserDefaults.standard.object(forKey: "LastModifiedDate")
-        
         if  lastModifiedDate == nil {
             UserDefaults.standard.set(Date(), forKey: "LastModifiedDate")
             completion(false)
         } else {
-            
-            refreshTime = Date().timeIntervalSince(lastModifiedDate as! Date)
-            if refreshTime > 10*60{
-                
+            let interval  = Date().timeIntervalSince(lastModifiedDate as? Date ?? Date())
+            if interval > 10*60{
                 UserDefaults.standard.set(Date(), forKey: "LastModifiedDate")
                 completion(false)
             }
         }
         completion(true)
     }
-    
 }
-

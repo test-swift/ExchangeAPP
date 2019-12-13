@@ -10,7 +10,6 @@ import Foundation
 import RealmSwift
 
 class Curr: Object {
-    
     @objc dynamic var name = ""
     @objc dynamic var rates = ""
     
