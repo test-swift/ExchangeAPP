@@ -11,20 +11,21 @@ import Charts
 
 class DetailViewController: UIViewController {
     
-    var presenter: DetailViewPresenterPrototcol!
-    var dataEntries: [ChartDataEntry] = []
     @IBOutlet weak var diagramView: UIView!
     @IBOutlet weak var linearDiagram: LineChartView!
     @IBOutlet weak var minValue: UIButton!
     @IBOutlet weak var maxValue: UIButton!
     @IBOutlet weak var img: UIImageView!
+    
+    var presenter: DetailViewPresenterPrototcol!
     let activityIndicator = UIActivityIndicatorView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.showLoadingAnimation()
         self.navigationController?.navigationBar.tintColor = UIColor.white
         let navLabel = UILabel()
-        let navTitle = NSMutableAttributedString(string: "Exchange Rate", attributes:[
+        let navTitle = NSMutableAttributedString(string: "\(presenter.symbol) Exchange Rate History", attributes:[
             NSAttributedString.Key.foregroundColor: UIColor.white,
             NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18.0, weight: UIFont.Weight.bold)])
         navLabel.attributedText = navTitle
@@ -32,38 +33,37 @@ class DetailViewController: UIViewController {
         diagramView.layer.cornerRadius = 10
         self.title = "\(presenter.symbol) Exchange Rate History"
         self.diagramView.backgroundColor =  UIColor(red:0.51, green:0.72, blue:0.29, alpha:0.6)
-        self.maxValue.backgroundColor = UIColor(red:0.51, green:0.72, blue:0.29, alpha:0.6)
-        self.minValue.backgroundColor = UIColor(red:0.51, green:0.72, blue:0.29, alpha:0.6)
-        self.minValue.layer.cornerRadius = 10
-        self.maxValue.layer.cornerRadius = 10
-        
-        self.minValue.setTitle("Minimum Rate For Last 7 day", for: .init())
-        self.maxValue.setTitle("Maximum Rate For Last 7 day", for: .init())
-        self.maxValue.setTitleColor(UIColor(red:0.9, green:0.58, blue:0.42, alpha:1.0), for: .init())
-        self.minValue.setTitleColor(UIColor(red:0.9, green:0.58, blue:0.42, alpha:1.0), for: .init())
+        self.setLabels(minValue: "0", maxValue: "0", imgName: "")
     }
 }
 
 
-
 extension DetailViewController: DetailViewProtocol{
+    
     func setLabels(minValue: String, maxValue: String, imgName: String)  {
+        
+        self.maxValue.backgroundColor = UIColor(red:0.51, green:0.72, blue:0.29, alpha:0.6)
+        self.minValue.backgroundColor = UIColor(red:0.51, green:0.72, blue:0.29, alpha:0.6)
+        self.minValue.layer.cornerRadius = 10
+        self.maxValue.layer.cornerRadius = 10
         self.minValue.setTitle("Mininum Rate: \(minValue)", for: .init())
         self.maxValue.setTitle("Maximum Rate: \(maxValue)", for: .init())
         self.img.image = UIImage(named: imgName)
+        self.maxValue.setTitleColor(UIColor(red:0.9, green:0.58, blue:0.42, alpha:1.0), for: .init())
+        self.minValue.setTitleColor(UIColor(red:0.9, green:0.58, blue:0.42, alpha:1.0), for: .init())
     }
     
-    
-    
-    
     func failureRequest() {
-        let alert = UIAlertController(title: "An Error Occurred", message: "No exchange rate data is available for the selected currency.", preferredStyle: .alert)
+        let alert = UIAlertController(
+            title: "An Error Occurred",
+            message: "No exchange rate data is available for the selected currency.",
+            preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         self.present(alert, animated: true)
     }
     
     func setChart(values: [Double], label: [String]) {
-        
+        var dataEntries: [ChartDataEntry] = []
         for i in 0..<values.count {
             let dataEntry = ChartDataEntry(x: Double(i), y: values[i])
             dataEntries.append(dataEntry)
@@ -109,7 +109,7 @@ extension DetailViewController: DetailViewProtocol{
         linearDiagram.leftAxis.drawGridLinesEnabled = false
         linearDiagram.rightAxis.drawAxisLineEnabled = false
         linearDiagram.rightAxis.drawGridLinesEnabled = false
-        
+        self.stopShowingLoadingAnimation()
     }
     
     //MARK: Creating gradient

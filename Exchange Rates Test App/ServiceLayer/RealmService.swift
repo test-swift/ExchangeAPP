@@ -31,10 +31,11 @@ class RealmService: RealmServiceProtocol{
     
     func createObjects(from dictionary: [String: Any]) {
         var objs = [Curr]()
+        
         let sortedDict = dictionary.sorted{$0.key > $1.key}
-
         for (key, value) in sortedDict{
             guard let value = value as? Double else {return}
+            if key == "USD" {continue}
             objs.append(Curr(name: key, rates: value))
         }
         do {
